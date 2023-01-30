@@ -1,0 +1,60 @@
+/* Estilos principales de la pagina */
+
+.body_wrapper{
+    padding: 3rem;
+    background-color: #fff;
+}
+  
+body{
+    font-family: 'Roboto Condensed', sans-serif!important;
+}
+
+.box-shadow{
+    box-shadow: 0px 5px 5px 5px #ccc;
+}
+
+.p-responsive{
+    padding: 1.5rem 4rem!important;
+}
+
+@media only screen and (max-width: 960px) {
+    .p-responsive {
+      padding: 1rem 10px!important;
+    }
+}
+
+.menu-link{
+    color: #1D1D1D!important;
+    transition: 0.5s!important;
+}
+
+.menu-link:hover{
+    text-decoration: none!important;
+    color: #EAAB23!important;
+}
+
+.cuadro-producto{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 0.5px #ccc;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.cuadro-producto:hover{
+    transform: translate(5px, 5px);
+}
+
+.cuadro-producto img{
+    max-width: 100%;
+    max-height: 180px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.cuadro-producto h1{
+    color: #1D1D1D;
+}
+.cuadro-producto p{
+    color: #9f9f9f;
+}
+
