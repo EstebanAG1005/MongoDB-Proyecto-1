@@ -4,12 +4,12 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 client = MongoClient("mongodb://localhost:27017")
-db = client["restaurant"]
+db = client["Proyecto1"]
 
 
 @app.route("/")
 def index():
-    collection = db["users"]
+    collection = db["productos"]
     data = collection.find()
     return render_template("index.html", data=data)
 

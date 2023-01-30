@@ -1,67 +1,35 @@
 <html>
 
 <head>
-    <title>Users</title>
+    <title>Products</title>
 </head>
 
 <body>
-    <h1>Users</h1>
+    <h1>Products</h1>
     <table>
         <thead>
             <tr>
-                <th>
-                    <html>
-
-                    <head>
-                        <title>Users</title>
-                    </head>
-
-                    <body>
-                        <h1>Users</h1>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>user_id</th>
-                                    <th>firstName</th>
-                                    <th>lastName</th>
-                                    <th>email</th>
-                                    <th>password</th>
-                                    <th>favorite_recipe</th>
-                                    <th>activity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for user in data %}
-                                <tr>
-                                    <td>{{ user['user_id'] }}</td>
-                                    <td>{{ user['firstName'] }}</td>
-                                    <td>{{ user['lastName'] }}</td>
-                                    <td>{{ user['email'] }}</td>
-                                    <td>{{ user['password'] }}</td>
-                                    <td>{{ user['favorite_recipe'] }}</td>
-                                    <td>{{ user['activity'] }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </body>
-
-                    </html>
-                </th>
-                <th>Age</th>
-                <th>City</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Discount Percentage</th>
+                <th>Rating</th>
+                <th>Stock</th>
+                <th>Provider</th>
+                <th>Category</th>
             </tr>
         </thead>
         <tbody>
-            {% for user in data %}
+            {% for product in data %}
             <tr>
-                <td>{{ user['user_id'] }}</td>
-                <td>{{ user['firstName'] }}</td>
-                <td>{{ user['lastName'] }}</td>
-                <td>{{ user['email'] }}</td>
-                <td>{{ user['password'] }}</td>
-                <td>{{ user['favorite_recipe'] }}</td>
-                <td>{{ user['activity'] }}</td>
+                <td>{{ product.title }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.discountPercentage }}</td>
+                <td>{{ product.rating }}</td>
+                <td>{{ product.stock }}</td>
+                <td>{{ product.provider }}</td>
+                <td>{{ product.category }}</td>
             </tr>
             {% endfor %}
         </tbody>
