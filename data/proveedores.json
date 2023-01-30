@@ -1,0 +1,390 @@
+[
+    {
+        "id": 1,
+        "provider_name": "Apple"
+    },
+    {
+        "id": 2,
+        "provider_name": "Samsung"
+    },
+    {
+        "id": 3,
+        "provider_name": "OPPO"
+    },
+    {
+        "id": 4,
+        "provider_name": "Huawei"
+    },
+    {
+        "id": 5,
+        "provider_name": "Microsoft Surface"
+    },
+    {
+        "id": 6,
+        "provider_name": "Infinix"
+    },
+    {
+        "id": 7,
+        "provider_name": "HP Pavilion"
+    },
+    {
+        "id": 8,
+        "provider_name": "Impression of Acqua Di Gio"
+    },
+    {
+        "id": 9,
+        "provider_name": "Royal_Mirage"
+    },
+    {
+        "id": 10,
+        "provider_name": "Fog Scent Xpressio"
+    },
+    {
+        "id": 11,
+        "provider_name": "Al Munakh"
+    },
+    {
+        "id": 12,
+        "provider_name": "Lord - Al-Rehab"
+    },
+    {
+        "id": 13,
+        "provider_name": "L'Oreal Paris"
+    },
+    {
+        "id": 14,
+        "provider_name": "Hemani Tea"
+    },
+    {
+        "id": 15,
+        "provider_name": "Dermive"
+    },
+    {
+        "id": 16,
+        "provider_name": "ROREC White Rice"
+    },
+    {
+        "id": 17,
+        "provider_name": "Fair & Clear"
+    },
+    {
+        "id": 18,
+        "provider_name": "Saaf & Khaas"
+    },
+    {
+        "id": 19,
+        "provider_name": "Bake Parlor Big"
+    },
+    {
+        "id": 20,
+        "provider_name": "Baking Food Items"
+    },
+    {
+        "id": 21,
+        "provider_name": "fauji"
+    },
+    {
+        "id": 22,
+        "provider_name": "Dry Rose"
+    },
+    {
+        "id": 23,
+        "provider_name": "Boho Decor"
+    },
+    {
+        "id": 24,
+        "provider_name": "Flying Wooden"
+    },
+    {
+        "id": 25,
+        "provider_name": "LED Lights"
+    },
+    {
+        "id": 26,
+        "provider_name": "luxury palace"
+    },
+    {
+        "id": 27,
+        "provider_name": "Golden"
+    },
+    {
+        "id": 28,
+        "provider_name": "Furniture Bed Set"
+    },
+    {
+        "id": 29,
+        "provider_name": "Ratttan Outdoor"
+    },
+    {
+        "id": 30,
+        "provider_name": "Kitchen Shelf"
+    },
+    {
+        "id": 31,
+        "provider_name": "Multi Purpose"
+    },
+    {
+        "id": 32,
+        "provider_name": "AmnaMart"
+    },
+    {
+        "id": 33,
+        "provider_name": "Professional Wear"
+    },
+    {
+        "id": 34,
+        "provider_name": "Soft Cotton"
+    },
+    {
+        "id": 35,
+        "provider_name": "Soft Cotton"
+    },
+    {
+        "id": 36,
+        "provider_name": "Top Sweater"
+    },
+    {
+        "id": 37,
+        "provider_name": "Top Sweater"
+    },
+    {
+        "id": 38,
+        "provider_name": "RED MICKY MOUSE.."
+    },
+    {
+        "id": 39,
+        "provider_name": "Digital Printed"
+    },
+    {
+        "id": 40,
+        "provider_name": "Ghazi Fabric"
+    },
+    {
+        "id": 41,
+        "provider_name": "Ghazi Fabric"
+    },
+    {
+        "id": 42,
+        "provider_name": "IELGY"
+    },
+    {
+        "id": 43,
+        "provider_name": "IELGY fashion"
+    },
+    {
+        "id": 44,
+        "provider_name": "Synthetic Leather"
+    },
+    {
+        "id": 45,
+        "provider_name": "Sandals Flip Flops"
+    },
+    {
+        "id": 46,
+        "provider_name": "Maasai Sandals"
+    },
+    {
+        "id": 47,
+        "provider_name": "Arrivals Genuine"
+    },
+    {
+        "id": 48,
+        "provider_name": "Vintage Apparel"
+    },
+    {
+        "id": 49,
+        "provider_name": "FREE FIRE"
+    },
+    {
+        "id": 50,
+        "provider_name": "Vintage Apparel"
+    },
+    {
+        "id": 51,
+        "provider_name": "The Warehouse"
+    },
+    {
+        "id": 52,
+        "provider_name": "The Warehouse"
+    },
+    {
+        "id": 53,
+        "provider_name": "Sneakers"
+    },
+    {
+        "id": 54,
+        "provider_name": "Rubber"
+    },
+    {
+        "id": 55,
+        "provider_name": "The Warehouse"
+    },
+    {
+        "id": 56,
+        "provider_name": "Sneakers"
+    },
+    {
+        "id": 57,
+        "provider_name": "Sneakers"
+    },
+    {
+        "id": 58,
+        "provider_name": "Naviforce"
+    },
+    {
+        "id": 59,
+        "provider_name": "SKMEI 9117"
+    },
+    {
+        "id": 60,
+        "provider_name": "SKMEI 9117"
+    },
+    {
+        "id": 61,
+        "provider_name": "Strap Skeleton"
+    },
+    {
+        "id": 62,
+        "provider_name": "Stainless"
+    },
+    {
+        "id": 63,
+        "provider_name": "Eastern Watches"
+    },
+    {
+        "id": 64,
+        "provider_name": "Eastern Watches"
+    },
+    {
+        "id": 65,
+        "provider_name": "Luxury Digital"
+    },
+    {
+        "id": 66,
+        "provider_name": "Watch Pearls"
+    },
+    {
+        "id": 67,
+        "provider_name": "Bracelet"
+    },
+    {
+        "id": 68,
+        "provider_name": "LouisWill"
+    },
+    {
+        "id": 69,
+        "provider_name": "LouisWill"
+    },
+    {
+        "id": 70,
+        "provider_name": "Bracelet"
+    },
+    {
+        "id": 71,
+        "provider_name": "Copenhagen Luxe"
+    },
+    {
+        "id": 72,
+        "provider_name": "Steal Frame"
+    },
+    {
+        "id": 73,
+        "provider_name": "Darojay"
+    },
+    {
+        "id": 74,
+        "provider_name": "Copenhagen Luxe"
+    },
+    {
+        "id": 75,
+        "provider_name": "Fashion Jewellery"
+    },
+    {
+        "id": 76,
+        "provider_name": "Fashion Jewellery"
+    },
+    {
+        "id": 77,
+        "provider_name": "Cuff Butterfly"
+    },
+    {
+        "id": 78,
+        "provider_name": "Designer Sun Glasses"
+    },
+    {
+        "id": 79,
+        "provider_name": "Designer Sun Glasses"
+    },
+    {
+        "id": 80,
+        "provider_name": "mastar watch"
+    },
+    {
+        "id": 81,
+        "provider_name": "mastar watch"
+    },
+    {
+        "id": 82,
+        "provider_name": "LouisWill"
+    },
+    {
+        "id": 83,
+        "provider_name": "Car Aux"
+    },
+    {
+        "id": 84,
+        "provider_name": "W1209 DC12V"
+    },
+    {
+        "id": 85,
+        "provider_name": "TC Reusable"
+    },
+    {
+        "id": 86,
+        "provider_name": "TC Reusable"
+    },
+    {
+        "id": 87,
+        "provider_name": "Neon LED Light"
+    },
+    {
+        "id": 88,
+        "provider_name": "METRO 70cc Motorcycle - MR70"
+    },
+    {
+        "id": 89,
+        "provider_name": "BRAVE BULL"
+    },
+    {
+        "id": 90,
+        "provider_name": "shock absorber"
+    },
+    {
+        "id": 91,
+        "provider_name": "JIEPOLLY"
+    },
+    {
+        "id": 92,
+        "provider_name": "Xiangle"
+    },
+    {
+        "id": 93,
+        "provider_name": "lightingbrilliance"
+    },
+    {
+        "id": 94,
+        "provider_name": "Ifei Home"
+    },
+    {
+        "id": 95,
+        "provider_name": "DADAWU"
+    },
+    {
+        "id": 96,
+        "provider_name": "Ifei Home"
+    },
+    {
+        "id": 97,
+        "provider_name": "YIOSI"
+    }
+]
