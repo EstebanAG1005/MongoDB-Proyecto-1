@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("mongodb://localhost:27017")
 db = client["restaurant"]
 
 
@@ -11,7 +11,7 @@ db = client["restaurant"]
 def index():
     collection = db["users"]
     data = collection.find()
-    return render_template("src\index.html", data=data)
+    return render_template("index.html", data=data)
 
 
 if __name__ == "__main__":

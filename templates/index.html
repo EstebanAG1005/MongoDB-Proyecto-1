@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <title>Users</title>
+</head>
+
+<body>
+    <h1>Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <html>
+
+                    <head>
+                        <title>Users</title>
+                    </head>
+
+                    <body>
+                        <h1>Users</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>user_id</th>
+                                    <th>firstName</th>
+                                    <th>lastName</th>
+                                    <th>email</th>
+                                    <th>password</th>
+                                    <th>favorite_recipe</th>
+                                    <th>activity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in data %}
+                                <tr>
+                                    <td>{{ user['user_id'] }}</td>
+                                    <td>{{ user['firstName'] }}</td>
+                                    <td>{{ user['lastName'] }}</td>
+                                    <td>{{ user['email'] }}</td>
+                                    <td>{{ user['password'] }}</td>
+                                    <td>{{ user['favorite_recipe'] }}</td>
+                                    <td>{{ user['activity'] }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </body>
+
+                    </html>
+                </th>
+                <th>Age</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in data %}
+            <tr>
+                <td>{{ user['user_id'] }}</td>
+                <td>{{ user['firstName'] }}</td>
+                <td>{{ user['lastName'] }}</td>
+                <td>{{ user['email'] }}</td>
+                <td>{{ user['password'] }}</td>
+                <td>{{ user['favorite_recipe'] }}</td>
+                <td>{{ user['activity'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>
