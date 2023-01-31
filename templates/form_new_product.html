@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Añadir Producto Nuevo{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-6">
+                <!-- templates/add_product.html -->
+                <h1>Añadir Producto</h1>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+                <form action="/add_product" method="post" class="forms">
+                    <input type="text" name="title" placeholder="Nombre del nuevo Producto" required>
+                    <textarea type="text" name="description" placeholder="Descripción del nuevo Producto" required></textarea>
+                    <input type="text" name="price" placeholder="Precio del nuevo producto (número)" required type="number">
+                    <input type="text" name="stock" placeholder="Cantidad en exitencia (número)" required type="number">
+                    <select name="provider" required>
+                        <option value="" hidden>Elige un Proveedor</option>
+                        {% for prov in proveedores %}
+                        <option value="{{prov.provider_name}}">{{prov.provider_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="category" required>
+                        <option value="" hidden>Elige una Categoría</option>
+                        {% for cat in categorias %}
+                        <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="text" name="thumbnail" placeholder="Link de imagen thumbnail" required>
+                    <button class="button" type="submit">Añadir</button>      
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

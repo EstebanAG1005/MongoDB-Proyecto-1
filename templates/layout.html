@@ -23,11 +23,13 @@
 <body style="background:#f4f4f4">
 
     <!-- As a link -->
-    <nav class="navbar navbar-light bg-light box-shadow p-responsive">
+    <nav class="navbar navbar-light bg-light box-shadow p-responsive fixed-top">
         <a class="navbar-brand menu-link" href="{{ url_for('index') }}"><i class="fas fa-home"></i> Inicio</a>
+        <a class="navbar-brand menu-link" href="{{ url_for('productos') }}"><i class="fa-solid fa-boxes-stacked"></i> Manejo de Productos</a>
         <a class="navbar-brand menu-link" href="#"><i class="fa-solid fa-file"></i> Categorías</a>
         <a class="navbar-brand menu-link" href="#"><i class="fa-solid fa-truck"></i> Proveedores</a>
     </nav>
+    <div style="height:80px"></div>
    
     <main class="body_wrapper">
         {% block content %}{% endblock %}
