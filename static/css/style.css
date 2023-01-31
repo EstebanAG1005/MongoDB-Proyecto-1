@@ -80,6 +80,7 @@ body{
     padding: 3rem 0;
     background-color: #fff;
     border-radius: 10px;
+    box-shadow: 2px 2px 2px 0.5px #ccc;
 }
 
 .hero form{
@@ -129,6 +130,7 @@ body{
     text-decoration: none;
     color: #1D1D1D;
     transition: 0.2s;
+    box-shadow: 2px 2px 2px 0.5px #ccc;
 }
 
 .hero-squares:hover{
