@@ -68,12 +68,13 @@ def add_producto():
         productos.insert_one(inserts)
         flash('Producto añadido con éxito!')
         return redirect(url_for('add_producto'))
-    return render_template('form_new_product.html', proveedores=proveedores_list, categorias=categorias_list)
+    return render_template('form_new_producto.html', proveedores=proveedores_list, categorias=categorias_list)
 
 
-@app.route('/select_product')  # PRE BORRAR PRODUCTO
-def select_product():
+@app.route('/select_producto_delete')  # PRE BORRAR PRODUCTO
+def select_producto_delete():
     collection = db["productos"]
+
     productos = collection.find()
     query = request.args.get('q')
     if query:
@@ -81,7 +82,15 @@ def select_product():
             {'title': {'$regex': query, '$options': 'i'}})
     else:
         results = []
-    return render_template('search_results.html', query=query, results=results, productos=productos)
+    return render_template('select_producto_delete.html', query=query, results=results, productos=productos)
+
+
+@app.route('/delete_producto/<int:id>')  # PRE BORRAR PRODUCTO
+def delete_producto(id):
+    collection = db["productos"]
+    collection.delete_one({"id": id})
+    flash('Producto borrado con éxito!')
+    return redirect(url_for("select_producto_delete"))
 
 
 @app.route('/search')  # SEARCH BAR

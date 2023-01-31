@@ -5,6 +5,16 @@
     background-color: #eee;
 }
   
+a{
+    color: #1D1D1D!important;
+
+}
+
+a:hover{
+    color: #EAAB23!important;
+    text-decoration: none!important;
+}
+
 body{
     font-family: 'Roboto Condensed', sans-serif!important;
 }
@@ -122,7 +132,7 @@ body{
 }
 
 .hero-squares:hover{
-    color: #FFF;
+    color: #FFF!important;
     background-color: #EAAB23;
     text-decoration: none;
     transform: translate(5px, 5px);
@@ -140,7 +150,7 @@ body{
 }
 
 .button{
-    color: #fff;
+    color: #fff!important;
     border: 1px solid #1D1D1D;
     border-radius: 10px;
     background-color: #1D1D1D;
@@ -150,7 +160,7 @@ body{
 }
 
 .button:hover{
-    color: #fff;
+    color: #fff!important;
     border: 1px solid #EAAB23;
     background-color: #EAAB23;
     text-decoration: none;
