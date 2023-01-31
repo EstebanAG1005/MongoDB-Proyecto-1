@@ -7,9 +7,10 @@ app = Flask(__name__)
 app.secret_key = 'llave_secreta'
 
 # Enable logging to see the error message
-logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
 
 client = MongoClient("mongodb://localhost:27017")
+# CAMBIAR NOMBRE DE BASES DE DATOS SI ES NECESARIO
 db = client["inventario_empresa"]
 
 
@@ -20,11 +21,16 @@ def index():
     return render_template("index.html", productos=productos)
 
 
-@app.route("/productos")  # Productos
-def productos():
+@app.route("/productos/<int:page>")  # Productos
+def productos(page):
     collection = db["productos"]
-    productos = collection.find()
-    return render_template("productos.html", productos=productos)
+
+    products_per_page = 12
+    total_products = collection.count_documents({})
+
+    productos = collection.find().skip(
+        (page - 1) * products_per_page).limit(products_per_page)
+    return render_template("productos.html", productos=productos, page=page, products_per_page=products_per_page, total_products=total_products)
 
 
 @app.route("/categorias")  # Categorias
@@ -63,6 +69,19 @@ def add_producto():
         flash('Producto añadido con éxito!')
         return redirect(url_for('add_producto'))
     return render_template('form_new_product.html', proveedores=proveedores_list, categorias=categorias_list)
+
+
+@app.route('/select_product')  # PRE BORRAR PRODUCTO
+def select_product():
+    collection = db["productos"]
+    productos = collection.find()
+    query = request.args.get('q')
+    if query:
+        results = collection.find(
+            {'title': {'$regex': query, '$options': 'i'}})
+    else:
+        results = []
+    return render_template('search_results.html', query=query, results=results, productos=productos)
 
 
 @app.route('/search')  # SEARCH BAR

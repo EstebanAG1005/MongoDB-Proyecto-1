@@ -153,6 +153,7 @@ body{
     color: #fff;
     border: 1px solid #EAAB23;
     background-color: #EAAB23;
+    text-decoration: none;
 }
 
 .messages{
@@ -165,4 +166,9 @@ body{
     border: 1px solid #EAAB23;
     background-color: #EAAB23;
     border-radius: 10px;
+}
+
+.pagination{
+    display: flex;
+    justify-content: space-between;
 }

@@ -28,7 +28,7 @@
             </div>
 
             <div class="col-lg-4 my-4">
-                <a href="" class="hero-squares">
+                <a href="{{url_for('select_product')}}" class="hero-squares">
                     <h1>Actualizar producto existente</h1>
                     <i class="fa-solid fa-arrow-up"></i>
                 </a>
@@ -58,6 +58,16 @@
                 </div>
             </div>
             {% endfor %}
+            <div class="col-lg-12">
+                <div class="pagination">
+                    {% if page > 1 %}
+                        <a class="button" href="{{ url_for('productos', page=page - 1) }}">Página Anterior</a>
+                    {% endif %}
+                    {% if (page * products_per_page) < total_products %}
+                        <a class="button" href="{{ url_for('productos', page=page + 1) }}">Siguiente Página</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 
