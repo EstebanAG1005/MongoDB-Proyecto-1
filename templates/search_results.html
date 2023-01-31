@@ -6,20 +6,18 @@
     <div class="section">
         <div class="row">
             <div class="col-lg-12">
-                <div class="hero">
-                    <h1>Productos</h1>
-                    <form action="/search" autocomplete="off" method="get">
-                        <input type="text" name="q">
-                        <button type="submit">Busca el producto deseado</button>
-                    </form>
-                </div>
+                <h1>Productos</h1>
+                <form action="/search" method="get">
+                    <input type="text" name="q">
+                    <button type="submit">Busca el producto deseado</button>
+                </form>
             </div>
         </div>
     </div>
 
     <div class="section"> 
         <div class="row">
-            {% for producto in productos %}
+            {% for producto in results %}
             <div class="col-lg-3 col-sm-6 my-4">
                 <div class="cuadro-producto">
                     <img src="{{producto.images[0]}}">

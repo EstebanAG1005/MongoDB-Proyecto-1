@@ -58,3 +58,45 @@ body{
     color: #9f9f9f;
 }
 
+.hero{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+}
+
+.hero form{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.hero form input{
+    width: 80%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-color: #1D1D1D;
+    padding: 10px;
+}
+
+.hero form button{
+    padding: 10px;
+    background-color: #1D1D1D;
+    color: #FFF;
+    border: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.5s;
+    width: 20%;
+}
+
+.hero form button:hover{
+    color: #fff;
+    border: 1px solid #EAAB23;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #EAAB23;
+}
