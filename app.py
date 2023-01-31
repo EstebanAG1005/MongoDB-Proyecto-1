@@ -1,8 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from pymongo import MongoClient
 import random
+import logging
 
 app = Flask(__name__)
+app.secret_key = 'llave_secreta'
+
+# Enable logging to see the error message
+logging.basicConfig(level=logging.DEBUG)
 
 client = MongoClient("mongodb://localhost:27017")
 db = client["inventario_empresa"]

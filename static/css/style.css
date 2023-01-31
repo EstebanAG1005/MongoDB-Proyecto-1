@@ -154,3 +154,15 @@ body{
     border: 1px solid #EAAB23;
     background-color: #EAAB23;
 }
+
+.messages{
+    list-style: none;
+    padding: 0;
+}
+
+.alert{
+    color: #fff;
+    border: 1px solid #EAAB23;
+    background-color: #EAAB23;
+    border-radius: 10px;
+}

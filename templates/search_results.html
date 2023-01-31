@@ -22,7 +22,7 @@
             {% for producto in results %}
             <div class="col-lg-3 col-sm-6 my-4">
                 <div class="cuadro-producto">
-                    <img src="{{producto.images[0]}}">
+                    <img src="{{producto.thumbnail}}">
                     <h3>{{producto.title}}</h3>
                     <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
                 </div>
