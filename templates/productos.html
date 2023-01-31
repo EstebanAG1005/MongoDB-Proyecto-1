@@ -63,6 +63,15 @@
                     {% if page > 1 %}
                         <a class="button" href="{{ url_for('productos', page=page - 1) }}">Página Anterior</a>
                     {% endif %}
+                    <div class="pagination_numbers">
+                    {% if page > 1 %}
+                        <a href="{{ url_for('productos', page=page - 1) }}">{{ page - 1}}</a>
+                    {% endif %}
+                        <strong>{{page}}</strong>
+                    {% if (page * products_per_page) < total_products %}    
+                        <a href="{{ url_for('productos', page=page + 1) }}">{{ page + 1}}</a>
+                    {% endif %}
+                    </div>
                     {% if (page * products_per_page) < total_products %}
                         <a class="button" href="{{ url_for('productos', page=page + 1) }}">Siguiente Página</a>
                     {% endif %}

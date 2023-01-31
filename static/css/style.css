@@ -171,4 +171,24 @@ body{
 .pagination{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.pagination .pagination_numbers{
+    display: flex;
+    font-size: 20px;
+}
+
+.pagination .pagination_numbers > *{
+    padding: 0 10px;
+}
+
+.pagination .pagination_numbers a{
+    color: #1D1D1D;
+    transition: 0.5s;
+}
+
+.pagination .pagination_numbers a:hover{
+    color: #EAAB23;
+    text-decoration: none;
 }
