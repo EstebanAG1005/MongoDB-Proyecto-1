@@ -45,7 +45,7 @@
                 {% for producto in results %}
                 <div class="col-lg-3 col-sm-6 my-4">
                     <a class="a-cuadro-producto" href="javascript:confirmDelete({{producto.id}})"><div class="cuadro-producto">
-                        <img src="{{producto.thumbnail}}">
+                        <img class="w-100" src="{{producto.thumbnail}}">
                         <h3>{{producto.title}}</h3>
                         <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
                     </div></a>
@@ -55,7 +55,7 @@
                 {% for producto in productos %}
                 <div class="col-lg-3 col-sm-6 my-4">
                     <a class="a-cuadro-producto" href="javascript:confirmDelete({{producto.id}})"><div class="cuadro-producto">
-                        <img src="{{producto.thumbnail}}">
+                        <img class="w-100" src="{{producto.thumbnail}}">
                         <h3>{{producto.title}}</h3>
                         <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
                     </div></a>
@@ -72,7 +72,7 @@
     <!-- Add a confirmation before deleting a product -->
     <script>
         function confirmDelete(id) {
-        if (confirm("Are you sure you want to delete this product?")) {
+        if (confirm("Seguro que quieres eliminar el producto?")) {
             window.location.href = "/delete_producto/" + id;
         }
         }
