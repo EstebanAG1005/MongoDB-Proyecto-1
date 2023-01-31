@@ -17,7 +17,7 @@
                 </ul>
                 {% endif %}
                 {% endwith %}
-                <form action="/add_producto" method="post" class="forms" autocomplete="off">
+                <form action="/add_producto" method="post" class="forms my-4" autocomplete="off">
                     <input type="text" name="title" placeholder="Nombre del nuevo Producto" required>
                     <textarea type="text" name="description" placeholder="Descripción del nuevo Producto" required></textarea>
                     <input type="text" name="price" placeholder="Precio del nuevo producto (número)" required type="number">
@@ -37,6 +37,7 @@
                     <input type="text" name="thumbnail" placeholder="Link de imagen thumbnail" required>
                     <button class="button" type="submit">Añadir</button>      
                 </form>
+                <a class="button" href="{{ url_for('productos', page=1) }}">Regresar</a>
 
             </div>
         </div>
