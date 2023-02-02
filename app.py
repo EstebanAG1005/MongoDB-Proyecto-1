@@ -177,7 +177,6 @@ def update_category(id):
     productos = db["productos"]
 
     categoria = categorias.find_one({'id': id})
-    print(categoria['category_name'])
 
     random_id = random.randint(0, 100000000)
 
