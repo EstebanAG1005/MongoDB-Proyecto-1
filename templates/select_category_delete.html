@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Selecciona un Producto{% endblock %}
+
+{% block content %}
+
+    <!-- Add the alert for a successful deletion -->
+    <div class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                    <li class="alert">{{ message }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+
+    <div class="section"> 
+        <div class="row">
+
+            {% for category in categorias %}
+            <div class="col-lg-3 col-sm-6 my-4">
+                <a class="a-cuadro-producto" href="javascript:confirmDelete({{category.id}})"><div class="cuadro-producto">
+                    <h3>{{category.category_name}}</h3>
+                </div></a>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block end_scripts %}
+    <!-- Add a confirmation before deleting a product -->
+    <script>
+        function confirmDelete(id) {
+        if (confirm("Seguro que quieres eliminar el producto?")) {
+            window.location.href = "/delete_category/" + id;
+        }
+        }
+    </script>
+
+{% endblock %}

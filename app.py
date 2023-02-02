@@ -197,6 +197,28 @@ def update_category(id):
     return render_template('form_update_category.html', categoria=categoria)
 
 
+@app.route('/select_category_delete')  # PRE DELETE CATEGORIA
+def select_category_delete():
+    collection = db["categorias"]
+    categorias = collection.find()
+    return render_template('select_category_delete.html', categorias=categorias)
+
+
+@app.route('/delete_category/<int:id>')  # BORRAR PRODUCTO
+def delete_category(id):
+    categorias = db["categorias"]
+    productos = db["productos"]
+
+    categoria = categorias.find_one({'id': id})
+
+    criteria = {"category": categoria['category_name']}
+    productos.delete_many(criteria)
+
+    categorias.delete_one({"id": id})
+    flash('Categoría y Productos relacionados con la misma borrados con éxito!')
+    return redirect(url_for("select_category_delete"))
+
+
 @app.route('/search')  # SEARCH BAR
 def search():
     collection = db["productos"]
