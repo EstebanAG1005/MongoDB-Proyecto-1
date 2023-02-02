@@ -40,6 +40,13 @@ def categorias():
     return render_template("categorias.html", categorias=categorias)
 
 
+@app.route("/category/<category_name>")  # Categoria singular
+def category_page(category_name):
+    collection = db["productos"]
+    productos = collection.find({"category": category_name})
+    return render_template("category_single.html", productos=productos, category_name=category_name)
+
+
 @app.route('/add_producto', methods=['GET', 'POST'])  # ADD PRODUCTOS
 def add_producto():
 

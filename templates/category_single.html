@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+  
+{% block title %}{{category_name}}{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hero">
+                    <h1>{{category_name}}</h1>
+                    <form action="/search" autocomplete="off" method="get">
+                        <input type="text" name="q">
+                        <button type="submit">Busca el producto deseado</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section"> 
+        <div class="row my-4">
+            <div class="col-lg-12">
+                <h3>Listado de productos</h3>
+            </div>
+            {% for producto in productos %}
+            <div class="col-lg-3 col-sm-6 my-4">
+                <div class="cuadro-producto">
+                    <img class="w-100" src="{{producto.thumbnail}}">
+                    <h3>{{producto.title}}</h3>
+                    <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+{% endblock %}

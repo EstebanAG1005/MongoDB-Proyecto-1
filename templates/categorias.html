@@ -7,11 +7,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="hero">
-                    <h1>Productos</h1>
-                    <form action="/search" autocomplete="off" method="get">
-                        <input type="text" name="q">
-                        <button type="submit">Busca el producto deseado</button>
-                    </form>
+                    <h1>Categorías</h1>
                 </div>
             </div>
         </div>
@@ -21,22 +17,22 @@
         <div class="row">
 
             <div class="col-lg-4 my-4">
-                <a href="{{url_for('add_producto')}}" class="hero-squares">
-                    <h1>Añadir nuevo producto</h1>
+                <a href="#" class="hero-squares">
+                    <h1>Añadir nueva categoría</h1>
                     <i class="fa-solid fa-plus"></i>
                 </a>
             </div>
 
             <div class="col-lg-4 my-4">
                 <a href="" class="hero-squares">
-                    <h1>Actualizar producto existente</h1>
+                    <h1>Actualizar categoría existente</h1>
                     <i class="fa-solid fa-arrow-up"></i>
                 </a>
             </div>
 
             <div class="col-lg-4 my-4">
                 <a href="" class="hero-squares">
-                    <h1>Eliminar producto</h1>
+                    <h1>Eliminar categoría</h1>
                     <i class="fa-solid fa-trash"></i>
                 </a>
             </div>
@@ -47,15 +43,13 @@
     <div class="section"> 
         <div class="row my-4">
             <div class="col-lg-12">
-                <h3>Listado de productos</h3>
+                <h3>Listado de categorias</h3>
             </div>
-            {% for producto in productos %}
+            {% for categoria in categorias %}
             <div class="col-lg-3 col-sm-6 my-4">
-                <div class="cuadro-producto">
-                    <img class="w-100" src="{{producto.thumbnail}}">
-                    <h3>{{producto.title}}</h3>
-                    <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
-                </div>
+                <a href="{{ url_for('category_page', category_name=categoria.category_name) }}"><div class="cuadro-producto p-4">
+                    <h3>{{categoria.category_name}}</h3>
+                </div></a>
             </div>
             {% endfor %}
         </div>
