@@ -44,7 +44,7 @@
             {% if results %}
                 {% for producto in results %}
                 <div class="col-lg-3 col-sm-6 my-4">
-                    <a class="a-cuadro-producto" href="javascript:confirmDelete({{producto.id}})"><div class="cuadro-producto">
+                    <a class="a-cuadro-producto" href="{{url_for('update_producto', id= producto.id)}}"><div class="cuadro-producto">
                         <img class="w-100" src="{{producto.thumbnail}}">
                         <h3>{{producto.title}}</h3>
                         <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
@@ -54,7 +54,7 @@
             {% else %}
                 {% for producto in productos %}
                 <div class="col-lg-3 col-sm-6 my-4">
-                    <a class="a-cuadro-producto" href="javascript:confirmDelete({{producto.id}})"><div class="cuadro-producto">
+                    <a class="a-cuadro-producto" href="{{url_for('update_producto', id= producto.id)}}"><div class="cuadro-producto">
                         <img class="w-100" src="{{producto.thumbnail}}">
                         <h3>{{producto.title}}</h3>
                         <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
@@ -69,13 +69,5 @@
 {% endblock %}
 
 {% block end_scripts %}
-    <!-- Add a confirmation before deleting a product -->
-    <script>
-        function confirmDelete(id) {
-        if (confirm("Seguro que quieres eliminar el producto?")) {
-            window.location.href = "/delete_producto/" + id;
-        }
-        }
-    </script>
 
 {% endblock %}

@@ -85,12 +85,56 @@ def select_producto_delete():
     return render_template('select_producto_delete.html', query=query, results=results, productos=productos)
 
 
-@app.route('/delete_producto/<int:id>')  # PRE BORRAR PRODUCTO
+@app.route('/delete_producto/<int:id>')  # BORRAR PRODUCTO
 def delete_producto(id):
     collection = db["productos"]
     collection.delete_one({"id": id})
     flash('Producto borrado con éxito!')
     return redirect(url_for("select_producto_delete"))
+
+
+@app.route('/select_producto_update')  # PRE UPDATE PRODUCTO
+def select_producto_update():
+    collection = db["productos"]
+
+    productos = collection.find()
+    query = request.args.get('q')
+    if query:
+        results = collection.find(
+            {'title': {'$regex': query, '$options': 'i'}})
+    else:
+        results = []
+    return render_template('select_producto_update.html', query=query, results=results, productos=productos)
+
+
+# UPDATE PRODUCTO
+@app.route('/update_producto/<int:id>', methods=['GET', 'POST'])
+def update_producto(id):
+
+    productos = db["productos"]
+    proveedores = db["proveedores"]
+    categorias = db["categorias"]
+
+    proveedores_list = proveedores.find()
+    categorias_list = categorias.find()
+
+    producto = productos.find_one({'id': id})
+
+    if request.method == 'POST':
+        title = request.form.get('title')
+        description = request.form.get('description')
+        price = request.form.get('price')
+        stock = request.form.get('stock')
+        provider = request.form.get('provider')
+        category = request.form.get('category')
+        thumbnail = request.form.get('thumbnail')
+        filter = {"id": id}
+        update = {"$set": {'id': id, 'title': title, 'description': description, 'price': price,
+                           'stock': stock, 'provider': provider, 'category': category, 'thumbnail': thumbnail}}
+        productos.update_one(filter, update)
+        flash('Producto actualizado con éxito!')
+        return redirect(url_for('add_producto'))
+    return render_template('form_update_producto.html', proveedores=proveedores_list, categorias=categorias_list, producto=producto)
 
 
 @app.route('/search')  # SEARCH BAR

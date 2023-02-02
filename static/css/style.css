@@ -1,4 +1,7 @@
 /* Estilos principales de la pagina */
+body{
+    font-family: 'Roboto Condensed', sans-serif!important;
+}
 
 .body_wrapper{
     padding: 3rem;
@@ -15,8 +18,8 @@ a:hover{
     text-decoration: none!important;
 }
 
-body{
-    font-family: 'Roboto Condensed', sans-serif!important;
+label{
+    margin: 0;
 }
 
 .box-shadow{

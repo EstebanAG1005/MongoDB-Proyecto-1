@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Actualizar Producto{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-6">
+                <!-- templates/add_product.html -->
+                <h1>Actualizar Producto</h1>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                    <li class="alert">{{ message }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+                <form action="/update_producto/{{producto.id}}" method="post" class="forms my-4 text-left-label text-center-a" autocomplete="off">
+                    <input type="text" name="title" placeholder="Nuevo nombre Producto" required>
+                    <label for="title">Nombre actual: {{producto.title}}</label>
+                    <textarea type="text" name="description" placeholder="Nueva descripción del Producto" required></textarea>
+                    <label for="description">Descripción actual: {{producto.description}}</label>
+                    <input type="text" name="price" placeholder="Nuevo precio del producto (número)" required type="number">
+                    <label for="price">Precio actual: ${{producto.price}}</label>
+                    <input type="text" name="stock" placeholder="Nueva cantidad en exitencia (número)" required type="number">
+                    <label for="stock">Cantidad disponible actual: {{producto.stock}}</label>
+                    <select name="provider" required>
+                        <option value="" hidden>Elige un nuevo Proveedor</option>
+                        {% for prov in proveedores %}
+                        <option value="{{prov.provider_name}}">{{prov.provider_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="provider">Proveedor actual: {{producto.provider}}</label>
+                    <select name="category" required>
+                        <option value="" hidden>Elige una nueva Categoría</option>
+                        {% for cat in categorias %}
+                        <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="category">Categoría actual: {{producto.category}}</label>
+                    <input type="text" name="thumbnail" placeholder="Link de la nueva imagen thumbnail" required>
+                    <button class="button" type="submit">Actualizar</button>      
+                </form>
+                <a class="button" href="{{ url_for('productos', page=1) }}">Regresar</a>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
