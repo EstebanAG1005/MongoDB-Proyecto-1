@@ -78,28 +78,6 @@ def add_producto():
     return render_template('form_new_producto.html', proveedores=proveedores_list, categorias=categorias_list)
 
 
-@app.route('/select_producto_delete')  # PRE BORRAR PRODUCTO
-def select_producto_delete():
-    collection = db["productos"]
-
-    productos = collection.find()
-    query = request.args.get('q')
-    if query:
-        results = collection.find(
-            {'title': {'$regex': query, '$options': 'i'}})
-    else:
-        results = []
-    return render_template('select_producto_delete.html', query=query, results=results, productos=productos)
-
-
-@app.route('/delete_producto/<int:id>')  # BORRAR PRODUCTO
-def delete_producto(id):
-    collection = db["productos"]
-    collection.delete_one({"id": id})
-    flash('Producto borrado con éxito!')
-    return redirect(url_for("select_producto_delete"))
-
-
 @app.route('/select_producto_update')  # PRE UPDATE PRODUCTO
 def select_producto_update():
     collection = db["productos"]
@@ -140,8 +118,84 @@ def update_producto(id):
                            'stock': stock, 'provider': provider, 'category': category, 'thumbnail': thumbnail}}
         productos.update_one(filter, update)
         flash('Producto actualizado con éxito!')
-        return redirect(url_for('add_producto'))
     return render_template('form_update_producto.html', proveedores=proveedores_list, categorias=categorias_list, producto=producto)
+
+
+@app.route('/select_producto_delete')  # PRE BORRAR PRODUCTO
+def select_producto_delete():
+    collection = db["productos"]
+
+    productos = collection.find()
+    query = request.args.get('q')
+    if query:
+        results = collection.find(
+            {'title': {'$regex': query, '$options': 'i'}})
+    else:
+        results = []
+    return render_template('select_producto_delete.html', query=query, results=results, productos=productos)
+
+
+@app.route('/delete_producto/<int:id>')  # BORRAR PRODUCTO
+def delete_producto(id):
+    collection = db["productos"]
+    collection.delete_one({"id": id})
+    flash('Producto borrado con éxito!')
+    return redirect(url_for("select_producto_delete"))
+
+
+@app.route('/add_category', methods=['GET', 'POST'])  # ADD CATEGORIAS
+def add_category():
+
+    categorias = db["categorias"]
+
+    random_id = random.randint(0, 100000000)
+
+    while categorias.find_one({'id': random_id}) is not None:
+        random_id = random.randint(0, 100000000)
+
+    if request.method == 'POST':
+        title = request.form.get('title')
+        inserts = {'id': random_id, 'category_name': title}
+        categorias.insert_one(inserts)
+        flash('Categoría añadida con éxito!')
+        return redirect(url_for('add_category'))
+    return render_template('form_new_category.html')
+
+
+@app.route('/select_category_update')  # PRE UPDATE CATEGORIA
+def select_category_update():
+    collection = db["categorias"]
+    categorias = collection.find()
+    return render_template('select_category_update.html', categorias=categorias)
+
+
+# UPDATE CATEGORIAS
+@app.route('/update_category/<int:id>', methods=['GET', 'POST'])
+def update_category(id):
+
+    categorias = db["categorias"]
+    productos = db["productos"]
+
+    categoria = categorias.find_one({'id': id})
+    print(categoria['category_name'])
+
+    random_id = random.randint(0, 100000000)
+
+    while categorias.find_one({'id': random_id}) is not None:
+        random_id = random.randint(0, 100000000)
+
+    if request.method == 'POST':
+        title = request.form.get('title')
+        filter = {"id": id}
+        update = {"$set": {'id': id, 'category_name': title}}
+        categorias.update_one(filter, update)
+        flash('Categoría actualizada con éxito!')
+        filter = {"category": categoria['category_name']}
+        update = {"$set": {'category': title}}
+        productos.update_many(filter, update)
+        flash('Prodcutos actualizados a la nueva categoría con éxito!')
+
+    return render_template('form_update_category.html', categoria=categoria)
 
 
 @app.route('/search')  # SEARCH BAR

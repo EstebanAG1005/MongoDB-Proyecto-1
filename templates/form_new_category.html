@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Añadir Categoría Nueva{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-6">
+                <h1>Añadir Categoría</h1>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                    <li class="alert">{{ message }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+                <form action="/add_category" method="post" class="forms my-4" autocomplete="off">
+                    <input type="text" name="title" placeholder="Nombre de la nueva categoría" required>
+                    <button class="button" type="submit">Añadir</button>      
+                </form>
+                <a class="button" href="{{ url_for('categorias') }}">Regresar</a>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
