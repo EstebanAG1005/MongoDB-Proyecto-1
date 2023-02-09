@@ -18,7 +18,10 @@ db = client["inventario_empresa"]
 def index():
     collection = db["productos"]
     productos = collection.find()
-    return render_template("index.html", productos=productos)
+    productos_sorted = collection.find().sort("price", -1)
+    productos_stock = collection.find().sort("stock", -1)
+
+    return render_template("index.html", productos=productos, productos_sorted=productos_sorted, productos_stock=productos_stock)
 
 
 @app.route("/productos/<int:page>")  # Productos
@@ -108,8 +111,8 @@ def update_producto(id):
     if request.method == 'POST':
         title = request.form.get('title')
         description = request.form.get('description')
-        price = request.form.get('price')
-        stock = request.form.get('stock')
+        price = int(request.form.get('price'))
+        stock = int(request.form.get('stock'))
         provider = request.form.get('provider')
         category = request.form.get('category')
         thumbnail = request.form.get('thumbnail')

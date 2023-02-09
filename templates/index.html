@@ -17,21 +17,94 @@
         </div>
     </div>
 
-    <!--div class="section"> 
-        <div class="row my-4">
-            <div class="col-lg-12">
-                <h3>Listado de productos</h3>
-            </div>
-            {% for producto in productos %}
-            <div class="col-lg-3 col-sm-6 my-4">
-                <div class="cuadro-producto">
-                    <img class="w-100" src="{{producto.thumbnail}}">
-                    <h3>{{producto.title}}</h3>
-                    <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Normal')" id="defaultOpen">Normal</button>
+        <button class="tablinks" onclick="openTab(event, 'Sorted')">Sorted</button>
+        <button class="tablinks" onclick="openTab(event, 'Stock')">Stock</button>
+    </div>
+    
+    <div id="Normal" class="tabcontent">
+        <div class="section"> 
+            <div class="row my-4">
+                <div class="col-lg-12">
+                    <h3>Listado de productos</h3>
                 </div>
+                {% for producto in productos %}
+                <div class="col-lg-3 col-sm-6 my-4">
+                    <div class="cuadro-producto">
+                        <img class="w-100" src="{{producto.thumbnail}}">
+                        <h3>{{producto.title}}</h3>
+                        <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
-    </div-->
+    </div>
+    
+    <div id="Sorted" class="tabcontent">
+        <div class="section"> 
+            <div class="row my-4">
+                <div class="col-lg-12">
+                    <h3>Listado de productos Ordenados por Precio</h3>
+                </div>
+                {% for producto in productos_sorted %}
+                <div class="col-lg-3 col-sm-6 my-4">
+                    <div class="cuadro-producto">
+                        <img class="w-100" src="{{producto.thumbnail}}">
+                        <h3>{{producto.title}}</h3>
+                        <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div id="Stock" class="tabcontent">
+        <div class="section"> 
+            <div class="row my-4">
+                <div class="col-lg-12">
+                    <h3>Listado de productos Ordenados por Cantidad de Stock</h3>
+                </div>
+                {% for producto in productos_stock %}
+                <div class="col-lg-3 col-sm-6 my-4">
+                    <div class="cuadro-producto">
+                        <img class="w-100" src="{{producto.thumbnail}}">
+                        <h3>{{producto.title}}</h3>
+                        <p>${{producto.price}} | Disponibles:&nbsp{{producto.stock}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    
+
+{% endblock %}
+
+{% block end_scripts %}
+
+    <script>
+        function openTab(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+    <script>
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
 
 {% endblock %}
