@@ -16,12 +16,40 @@ db = client["inventario_empresa"]
 
 @app.route("/")  # INDEX
 def index():
-    collection = db["productos"]
-    productos = collection.find()
-    productos_sorted = collection.find().sort("price", -1)
-    productos_stock = collection.find().sort("stock", -1)
+    prods = db["productos"]
+    categorias = db["categorias"]
+    proveedores = db["proveedores"]
 
-    return render_template("index.html", productos=productos, productos_sorted=productos_sorted, productos_stock=productos_stock)
+    productos = prods.find()
+    productos_sorted = prods.find().sort("price", -1)
+    productos_stock = prods.find().sort("stock", -1)
+
+    # Realizar la agregación
+    pipeline = [
+        # Agrupar los productos por categoría y calcular el número de productos en cada categoría
+        {
+            "$group": {
+                "_id": "$category",
+                "num_products": {
+                    "$sum": 1
+                }
+            }
+        },
+        # Ordenar los resultados por número de productos en cada categoría
+        {
+            "$sort": {
+                "num_products": -1
+            }
+        },
+        # Limitar los resultados a las tres categorías con más productos
+        {
+            "$limit": 3
+        }
+    ]
+
+    top_categories = list(prods.aggregate(pipeline))
+
+    return render_template("index.html", productos=productos, productos_sorted=productos_sorted, productos_stock=productos_stock, top_categories=top_categories)
 
 
 @app.route("/productos/<int:page>")  # Productos

@@ -241,6 +241,27 @@ label{
     background-color: #EAAB23;
     color: #fff;
 }
+
+/* Style the buttons inside the tab */
+.tab a {
+    width: 100%;
+    border: none;
+    background-color: #FFF;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+    box-shadow: 2px 2px 2px 0.5px #ccc;
+    margin: 0 5px;
+    font-size: 18px;
+    text-align: center;
+}
+  
+/* Change background color of buttons on hover */
+.tab a:hover {
+    background-color: #EAAB23;
+    color: #fff!important;
+}
   
 /* Create an active/current tablink class */
 .tab button.active {

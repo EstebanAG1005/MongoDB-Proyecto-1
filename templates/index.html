@@ -17,18 +17,39 @@
         </div>
     </div>
 
+    <div class="section">
+        <div class="row my-4">
+            <div class="col-lg-12">
+                <h3>Top 3 categorías con más productos:</h3>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="tab">
+        {% for categoria in top_categories %}
+        <a href="{{ url_for('category_page', category_name=categoria._id) }}" class="tablinks" >{{categoria._id}}</a>
+        {% endfor %}
+    </div>
+    
+
+    <div class="section">
+        <div class="row my-4">
+            <div class="col-lg-12">
+                <h3>Productos Ordenados Por:</h3>
+            </div>
+        </div>
+    </div>
+
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'Normal')" id="defaultOpen">Normal</button>
-        <button class="tablinks" onclick="openTab(event, 'Sorted')">Sorted</button>
-        <button class="tablinks" onclick="openTab(event, 'Stock')">Stock</button>
+        <button class="tablinks" onclick="openTab(event, 'Sorted')">Por Precio</button>
+        <button class="tablinks" onclick="openTab(event, 'Stock')">Por Cantidad</button>
     </div>
     
     <div id="Normal" class="tabcontent">
         <div class="section"> 
             <div class="row my-4">
-                <div class="col-lg-12">
-                    <h3>Listado de productos</h3>
-                </div>
                 {% for producto in productos %}
                 <div class="col-lg-3 col-sm-6 my-4">
                     <div class="cuadro-producto">
@@ -45,9 +66,6 @@
     <div id="Sorted" class="tabcontent">
         <div class="section"> 
             <div class="row my-4">
-                <div class="col-lg-12">
-                    <h3>Listado de productos Ordenados por Precio</h3>
-                </div>
                 {% for producto in productos_sorted %}
                 <div class="col-lg-3 col-sm-6 my-4">
                     <div class="cuadro-producto">
@@ -64,9 +82,6 @@
     <div id="Stock" class="tabcontent">
         <div class="section"> 
             <div class="row my-4">
-                <div class="col-lg-12">
-                    <h3>Listado de productos Ordenados por Cantidad de Stock</h3>
-                </div>
                 {% for producto in productos_stock %}
                 <div class="col-lg-3 col-sm-6 my-4">
                     <div class="cuadro-producto">
