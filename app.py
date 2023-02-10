@@ -19,7 +19,6 @@ def index():
     prods = db["productos"]
     categorias = db["categorias"]
     proveedores = db["proveedores"]
-
     productos = prods.find()
     productos_sorted = prods.find().sort("price", -1)
     productos_stock = prods.find().sort("stock", -1)
@@ -47,7 +46,7 @@ def index():
         }
     ]
 
-    top_categories = list(prods.aggregate(pipeline))
+    top_categories = prods.aggregate(pipeline)
 
     return render_template("index.html", productos=productos, productos_sorted=productos_sorted, productos_stock=productos_stock, top_categories=top_categories)
 
@@ -75,7 +74,15 @@ def categorias():
 def category_page(category_name):
     collection = db["productos"]
     productos = collection.find({"category": category_name})
-    return render_template("category_single.html", productos=productos, category_name=category_name)
+
+    pipeline = [
+        {"$match": {"category": category_name}},
+        {"$group": {"_id": "$category", "average_price": {"$avg": "$price"}}}
+    ]
+
+    avg_price = list(collection.aggregate(pipeline))
+
+    return render_template("category_single.html", productos=productos, category_name=category_name, avg_price=avg_price[0]['average_price'])
 
 
 @app.route('/add_producto', methods=['GET', 'POST'])  # ADD PRODUCTOS
