@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
   
-{% block title %}Selecciona una Categoría{% endblock %}
+{% block title %}Selecciona un Proveedor{% endblock %}
 
 {% block content %}
 
@@ -24,16 +24,17 @@
     <div class="section"> 
         <div class="row">
 
-            {% for category in categorias %}
+            {% for proveedor in proveedores %}
             <div class="col-lg-3 col-sm-6 my-4">
-                <a class="a-cuadro-producto" href="javascript:confirmDelete({{category.id}})"><div class="cuadro-producto">
-                    <h3>{{category.category_name}}</h3>
+                <a class="a-cuadro-producto" href="javascript:confirmDelete({{proveedor.id}})"><div class="cuadro-producto">
+                    <h3>{{proveedor.provider_name}}</h3>
                 </div></a>
             </div>
             {% endfor %}
             <div class="col-lg-12 text-center my-4">
-                <a class="button" href="{{ url_for('categorias') }}">Regresar</a>
+                <a class="button" href="{{ url_for('proveedores') }}">Regresar</a>
             </div>
+            
         </div>
     </div>
 
@@ -43,8 +44,8 @@
     <!-- Add a confirmation before deleting a product -->
     <script>
         function confirmDelete(id) {
-        if (confirm("Seguro que quieres eliminar la categoría?")) {
-            window.location.href = "/delete_category/" + id;
+        if (confirm("Seguro que quieres eliminar el proveedor?")) {
+            window.location.href = "/delete_provider/" + id;
         }
         }
     </script>

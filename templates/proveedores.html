@@ -13,9 +13,39 @@
             </div>
         </div>
     </div>
+
+    <div class="section">
+        <div class="row">
+
+            <div class="col-lg-4 my-4">
+                <a href="{{url_for('add_provider')}}" class="hero-squares">
+                    <h1>Añadir nuevo proveedor</h1>
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            </div>
+
+            <div class="col-lg-4 my-4">
+                <a href="{{url_for('select_provider_update')}}" class="hero-squares">
+                    <h1>Actualizar proveedor existente</h1>
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+            </div>
+
+            <div class="col-lg-4 my-4">
+                <a href="{{url_for('select_provider_delete')}}" class="hero-squares">
+                    <h1>Eliminar proveedor</h1>
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
     
     <div class="section">
         <div class="row">
+            <div class="col-lg-12">
+                <h3>Listado de proveedores</h3>
+            </div>
             {%for proveedor in proveedores %}
             <div class="col-lg-2 col-sm-6 my-4">
                 <div class="cuadro-producto p-4">

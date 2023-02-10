@@ -224,11 +224,6 @@ def update_category(id):
 
     categoria = categorias.find_one({'id': id})
 
-    random_id = random.randint(0, 100000000)
-
-    while categorias.find_one({'id': random_id}) is not None:
-        random_id = random.randint(0, 100000000)
-
     if request.method == 'POST':
         title = request.form.get('title')
         filter = {"id": id}
@@ -250,7 +245,7 @@ def select_category_delete():
     return render_template('select_category_delete.html', categorias=categorias)
 
 
-@app.route('/delete_category/<int:id>')  # BORRAR PRODUCTO
+@app.route('/delete_category/<int:id>')  # BORRAR CATEGORIA
 def delete_category(id):
     categorias = db["categorias"]
     productos = db["productos"]
@@ -263,6 +258,77 @@ def delete_category(id):
     categorias.delete_one({"id": id})
     flash('Categoría y Productos relacionados con la misma borrados con éxito!')
     return redirect(url_for("select_category_delete"))
+
+
+@app.route('/add_provider', methods=['GET', 'POST'])  # ADD PROVEEDOR
+def add_provider():
+
+    categorias = db["proveedores"]
+
+    random_id = random.randint(0, 100000000)
+
+    while categorias.find_one({'id': random_id}) is not None:
+        random_id = random.randint(0, 100000000)
+
+    if request.method == 'POST':
+        title = request.form.get('title')
+        inserts = {'id': random_id, 'provider_name': title}
+        categorias.insert_one(inserts)
+        flash('Proveedor añadido con éxito!')
+        return redirect(url_for('add_provider'))
+    return render_template('form_new_provider.html')
+
+
+@app.route('/select_provider_update')  # PRE UPDATE PROVEEDOR
+def select_provider_update():
+    collection = db["proveedores"]
+    proveedores = collection.find()
+    return render_template('select_provider_update.html', proveedores=proveedores)
+
+
+# UPDATE PROVEEDOR
+@app.route('/update_provider/<int:id>', methods=['GET', 'POST'])
+def update_provider(id):
+
+    proveedores = db["proveedores"]
+    productos = db["productos"]
+
+    proveedor = proveedores.find_one({'id': id})
+
+    if request.method == 'POST':
+        title = request.form.get('title')
+        filter = {"id": id}
+        update = {"$set": {'id': id, 'provider_name': title}}
+        proveedores.update_one(filter, update)
+        flash('Proveedor actualizado con éxito!')
+        filter = {"provider": proveedor['provider_name']}
+        update = {"$set": {'provider': title}}
+        productos.update_many(filter, update)
+        flash('Prodcutos actualizados al nuevo proveedor con éxito!')
+
+    return render_template('form_update_provider.html', proveedor=proveedor)
+
+
+@app.route('/select_provider_delete')  # PRE DELETE PROVEEDOR
+def select_provider_delete():
+    collection = db["proveedores"]
+    proveedores = collection.find()
+    return render_template('select_provider_delete.html', proveedores=proveedores)
+
+
+@app.route('/delete_provider/<int:id>')  # BORRAR PROVEEDOR
+def delete_provider(id):
+    proveedores = db["proveedores"]
+    productos = db["productos"]
+
+    proveedor = proveedores.find_one({'id': id})
+
+    criteria = {"category": proveedor['provider_name']}
+    productos.delete_many(criteria)
+
+    proveedores.delete_one({"id": id})
+    flash('Proveedor y Productos relacionados con la misma borrados con éxito!')
+    return redirect(url_for("select_provider_delete"))
 
 
 @app.route('/search')  # SEARCH BAR

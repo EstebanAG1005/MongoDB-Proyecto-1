@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Actualizar Proveedor{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-6">
+                <!-- templates/add_product.html -->
+                <h1>Actualizar Proveedor</h1>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                    <li class="alert">{{ message }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+                <form action="/update_provider/{{proveedor.id}}" method="post" class="forms my-4 text-left-label text-center-a" autocomplete="off">
+                    <label for="title">Nombre actual: {{proveedor.provider_name}}</label>
+                    <input type="text" name="title" placeholder="Nuevo nombre de Proveedor" required>
+                    <button class="button" type="submit">Actualizar</button>      
+                </form>
+                <a class="button" href="{{ url_for('proveedores') }}">Regresar</a>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
