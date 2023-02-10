@@ -85,6 +85,14 @@ def category_page(category_name):
     return render_template("category_single.html", productos=productos, category_name=category_name, avg_price=avg_price[0]['average_price'])
 
 
+@app.route("/proveedores")  # Proveedores
+def proveedores():
+    collection = db["proveedores"]
+    proveedores = collection.find()
+
+    return render_template("proveedores.html", proveedores=proveedores)
+
+
 @app.route('/add_producto', methods=['GET', 'POST'])  # ADD PRODUCTOS
 def add_producto():
 

@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Proveedores{% endblock %}
+
+{% block content %}
+
+    <div class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hero">
+                    <h1>Proveedores</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="row">
+            {%for proveedor in proveedores %}
+            <div class="col-lg-2 col-sm-6 my-4">
+                <div class="cuadro-producto p-4">
+                    <h3>{{proveedor.provider_name}}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
