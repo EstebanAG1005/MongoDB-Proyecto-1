@@ -23,12 +23,6 @@ client = MongoClient(
 
 client1 = MongoClient("mongodb://localhost:27017")
 
-try:
-    # Checquear la conexion a la base de datos
-    print(client.list_database_names())
-except Exception as e:
-    print("Error connecting to the database:", e)
-
 db = client["inventario_empresa"]
 db1 = client1["Proyecto1"]
 
@@ -170,7 +164,8 @@ def select_producto_update():
     productos = collection.find()
     query = request.args.get("q")
     if query:
-        results = collection.find({"title": {"$regex": query, "$options": "i"}})
+        results = collection.find(
+            {"title": {"$regex": query, "$options": "i"}})
     else:
         results = []
     return render_template(
@@ -234,7 +229,8 @@ def select_producto_delete():
     productos = collection.find()
     query = request.args.get("q")
     if query:
-        results = collection.find({"title": {"$regex": query, "$options": "i"}})
+        results = collection.find(
+            {"title": {"$regex": query, "$options": "i"}})
     else:
         results = []
     return render_template(
@@ -424,7 +420,8 @@ def search():
     collection = db["productos"]
     query = request.args.get("q")
     if query:
-        results = collection.find({"title": {"$regex": query, "$options": "i"}})
+        results = collection.find(
+            {"title": {"$regex": query, "$options": "i"}})
     else:
         results = []
     return render_template("search_results.html", query=query, results=results)
