@@ -1,9 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from pymongo import MongoClient
 import random
 import logging
 import urllib.parse
 import pymongo
+import plotly.express as px
+import pandas as pd
+
 
 app = Flask(__name__)
 app.secret_key = "llave_secreta"
@@ -387,6 +390,11 @@ def search():
     else:
         results = []
     return render_template("search_results.html", query=query, results=results)
+
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
 
 
 if __name__ == "__main__":
