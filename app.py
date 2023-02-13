@@ -21,6 +21,8 @@ client = MongoClient(
     socketTimeoutMS=30000,
 )
 
+client1 = MongoClient("mongodb://localhost:27017")
+
 try:
     # Checquear la conexion a la base de datos
     print(client.list_database_names())
@@ -28,6 +30,7 @@ except Exception as e:
     print("Error connecting to the database:", e)
 
 db = client["inventario_empresa"]
+db1 = client1["Proyecto1"]
 
 
 @app.route("/")  # INDEX
@@ -120,6 +123,8 @@ def add_producto():
     productos = db["productos"]
     proveedores = db["proveedores"]
     categorias = db["categorias"]
+    categorias1 = db1["categorias"]
+    productos1 = db1["productos"]
 
     proveedores_list = proveedores.find()
     categorias_list = categorias.find()
@@ -148,6 +153,7 @@ def add_producto():
             "thumbnail": thumbnail,
         }
         productos.insert_one(inserts)
+        productos1.insert_one(inserts)
         flash("Producto añadido con éxito!")
         return redirect(url_for("add_producto"))
     return render_template(
@@ -180,6 +186,10 @@ def update_producto(id):
     proveedores = db["proveedores"]
     categorias = db["categorias"]
 
+    productos1 = db1["productos"]
+    proveedores1 = db1["proveedores"]
+    categorias1 = db1["categorias"]
+
     proveedores_list = proveedores.find()
     categorias_list = categorias.find()
 
@@ -207,6 +217,7 @@ def update_producto(id):
             }
         }
         productos.update_one(filter, update)
+        productos1.update_one(filter, update)
         flash("Producto actualizado con éxito!")
     return render_template(
         "form_update_producto.html",
@@ -234,7 +245,10 @@ def select_producto_delete():
 @app.route("/delete_producto/<int:id>")  # BORRAR PRODUCTO
 def delete_producto(id):
     collection = db["productos"]
+    collection1 = db1["productos"]
+
     collection.delete_one({"id": id})
+    collection1.delete_one({"id": id})
     flash("Producto borrado con éxito!")
     return redirect(url_for("select_producto_delete"))
 
@@ -243,6 +257,7 @@ def delete_producto(id):
 def add_category():
 
     categorias = db["categorias"]
+    categorias1 = db1["categorias"]
 
     random_id = random.randint(0, 100000000)
 
@@ -253,6 +268,7 @@ def add_category():
         title = request.form.get("title")
         inserts = {"id": random_id, "category_name": title}
         categorias.insert_one(inserts)
+        categorias1.insert_one(inserts)
         flash("Categoría añadida con éxito!")
         return redirect(url_for("add_category"))
     return render_template("form_new_category.html")
@@ -272,6 +288,9 @@ def update_category(id):
     categorias = db["categorias"]
     productos = db["productos"]
 
+    categorias1 = db1["categorias"]
+    productos1 = db1["productos"]
+
     categoria = categorias.find_one({"id": id})
 
     if request.method == "POST":
@@ -279,10 +298,12 @@ def update_category(id):
         filter = {"id": id}
         update = {"$set": {"id": id, "category_name": title}}
         categorias.update_one(filter, update)
+        categorias1.update_one(filter, update)
         flash("Categoría actualizada con éxito!")
         filter = {"category": categoria["category_name"]}
         update = {"$set": {"category": title}}
         productos.update_many(filter, update)
+        productos1.update_many(filter, update)
         flash("Prodcutos actualizados a la nueva categoría con éxito!")
 
     return render_template("form_update_category.html", categoria=categoria)
@@ -300,12 +321,17 @@ def delete_category(id):
     categorias = db["categorias"]
     productos = db["productos"]
 
+    categorias1 = db1["categorias"]
+    productos1 = db1["productos"]
+
     categoria = categorias.find_one({"id": id})
 
     criteria = {"category": categoria["category_name"]}
     productos.delete_many(criteria)
+    productos1.delete_many(criteria)
 
     categorias.delete_one({"id": id})
+    categorias1.delete_one({"id": id})
     flash("Categoría y Productos relacionados con la misma borrados con éxito!")
     return redirect(url_for("select_category_delete"))
 
@@ -314,6 +340,7 @@ def delete_category(id):
 def add_provider():
 
     categorias = db["proveedores"]
+    categorias1 = db1["proveedores"]
 
     random_id = random.randint(0, 100000000)
 
@@ -324,6 +351,7 @@ def add_provider():
         title = request.form.get("title")
         inserts = {"id": random_id, "provider_name": title}
         categorias.insert_one(inserts)
+        categorias1.insert_one(inserts)
         flash("Proveedor añadido con éxito!")
         return redirect(url_for("add_provider"))
     return render_template("form_new_provider.html")
@@ -343,6 +371,9 @@ def update_provider(id):
     proveedores = db["proveedores"]
     productos = db["productos"]
 
+    proveedores1 = db1["proveedores"]
+    productos1 = db1["productos"]
+
     proveedor = proveedores.find_one({"id": id})
 
     if request.method == "POST":
@@ -350,10 +381,12 @@ def update_provider(id):
         filter = {"id": id}
         update = {"$set": {"id": id, "provider_name": title}}
         proveedores.update_one(filter, update)
+        proveedores1.update_one(filter, update)
         flash("Proveedor actualizado con éxito!")
         filter = {"provider": proveedor["provider_name"]}
         update = {"$set": {"provider": title}}
         productos.update_many(filter, update)
+        productos1.update_many(filter, update)
         flash("Prodcutos actualizados al nuevo proveedor con éxito!")
 
     return render_template("form_update_provider.html", proveedor=proveedor)
@@ -371,12 +404,17 @@ def delete_provider(id):
     proveedores = db["proveedores"]
     productos = db["productos"]
 
+    proveedores1 = db1["proveedores"]
+    productos1 = db1["productos"]
+
     proveedor = proveedores.find_one({"id": id})
 
     criteria = {"category": proveedor["provider_name"]}
     productos.delete_many(criteria)
+    productos1.delete_many(criteria)
 
     proveedores.delete_one({"id": id})
+    proveedores1.delete_one({"id": id})
     flash("Proveedor y Productos relacionados con la misma borrados con éxito!")
     return redirect(url_for("select_provider_delete"))
 
